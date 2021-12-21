@@ -1,20 +1,20 @@
 var scroller = `
 *   * *** * * *** **     ***  *  *   * *   *  *     *** * * * ***   * *  *  * *   * * **
 **  * *   * * *   * *   *    * * **  * **  * * *   *    * * * *     * * * * * *   * * * *
-* * * **  * * *** **    * ** * * * * * * * * ***   * ** * * * ***    *  * * * *   * * **
+* * * **  * * **  **    * ** * * * * * * * * ***   * ** * * * **     *  * * * *   * * **
 *  ** *   * * *   * *   *  * * * *  ** *  ** * *   *  * * * * *      *  * * * *   * * *
 *   * ***  *  *** * *    **   *  *   * *   * * *    **  *  *  ***    *   *  ***   *** *
 `.split("\n");
 var melody = `12426  6  5     12425  5  4     12424   5 3  21   1 5   4      12426  6  5     12427   3 4  32 12424   5 3  21   1 5   4`;
-var quotes = '\'"`';
+var quotes = '\'"';
 
 function encode(offset, quote) {
   str = ""
   function concat(c) {
     // The binary data is offset by a value, 32 or more, to get into safe ascii values range. 32 = space
-    // 32-126 should be perfectly safe to use
+    // 32-95 should be perfectly safe to use. For some reason, getting problems with larger values.
     c += offset;
-    if (c > 126)
+    if (c > 95)
       throw 'out of range';
     n = String.fromCharCode(c);
     if (n == '\\')
